@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 cd /root
 
 cat > mining-setup.sh <<'EOT'
