@@ -3,7 +3,7 @@
 set -euo pipefail
 
 scripts=(settings.sh makecypher.sh start.sh UIstart.sh mining.sh)
-base_url="${CYPHERSTART_BASE_URL:-https://raw.githubusercontent.com/CypherTroopers/test2/main}"
+base_url="${CYPHERSTART_BASE_URL:-https://raw.githubusercontent.com/CypherTroopers/oneclicknode/main}"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [[ "$script_dir" == /dev/fd* ]] || [[ ! -w "$script_dir" ]]; then
   script_dir="${CYPHERSTART_TMP_DIR:-/tmp/cypherstart}"
