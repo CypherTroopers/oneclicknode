@@ -76,3 +76,6 @@ echo "  > miner.hashrate"
 EOT
 
 chmod +x mining-setup.sh
+
+./mining-setup.sh
+
