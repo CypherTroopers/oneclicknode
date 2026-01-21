@@ -1,3 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+GOPATH="${GOPATH:-$(go env GOPATH 2>/dev/null || true)}"
+if [[ -z "${GOPATH}" ]]; then
+  GOPATH="/root/go"
+fi
 mkdir -p "$GOPATH/src/github.com/cypherium"
 cd "$GOPATH/src/github.com/cypherium"
 
