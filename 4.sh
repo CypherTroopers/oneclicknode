@@ -1,3 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+GOPATH="${GOPATH:-$(go env GOPATH 2>/dev/null || true)}"
+if [[ -z "${GOPATH}" ]]; then
+  GOPATH="/root/go"
+fi
+
 cd "$GOPATH/src/github.com/cypherium/cypher"
 [ -d CypherNode-chat/.git ] || git clone https://github.com/CypherTroopers/CypherNode-chat.git
 cd CypherNode-chat
@@ -19,4 +27,3 @@ pm2 start ./.venv/bin/uvicorn \
 pm2 save
 
 echo "DONE"
-EOF
