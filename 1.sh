@@ -1,10 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
 apt-get update
 apt-get full-upgrade -y
 apt-get autoremove -y
 apt-get autoclean -y
 if [ -f /etc/gai.conf ]; then
-
-
   sed -i -E 's/^[#[:space:]]*precedence[[:space:]]+::ffff:0:0\/96[[:space:]]+100/precedence ::ffff:0:0\/96  100/' /etc/gai.conf || true
 fi
 
@@ -15,7 +16,7 @@ apt-get install -y --no-install-recommends \
   python3 python3-venv python3-pip python3-dev \
   nodejs npm pcscd
 
-Node: switch to latest stable via "n" ---
+# Node: switch to latest stable via "n"
 npm install -g n
 n stable
 
@@ -26,9 +27,7 @@ export PATH="/usr/local/bin:$PATH"
 grep -q '^export PATH=/usr/local/bin:\$PATH' /root/.bashrc || echo 'export PATH=/usr/local/bin:$PATH' >> /root/.bashrc
 hash -r
 
-
 npm install -g pm2
-
 
 ufw default deny incoming
 ufw default allow outgoing
