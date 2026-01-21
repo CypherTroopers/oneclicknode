@@ -1,3 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+GOPATH="${GOPATH:-$(go env GOPATH 2>/dev/null || true)}"
+if [[ -z "${GOPATH}" ]]; then
+  GOPATH="/root/go"
+fi
+
 cd "$GOPATH/src/github.com/cypherium/cypher"
 if [ ! -f ./genesis.json ]; then
   echo "ERROR: genesis.json not found in $PWD"
