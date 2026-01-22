@@ -1,9 +1,9 @@
 # linux(Ubuntu 24.04)　cypher node mining & build UI
  ```
-sudo su -c "bash <(wget -qO- https://raw.githubusercontent.com/CypherTroopers/oneclicknode/cypherstart.sh)" root
+https://raw.githubusercontent.com/CypherTroopers/oneclicknode/main/cypherstart.sh
  ```
 # linux(Ubuntu 24.04)　cypher node mining only
 
  ```
-sudo su -c "bash <(wget -qO- https://raw.githubusercontent.com/CypherTroopers/oneclicknode/node.sh)" root
+sudo su -c "bash <(wget -qO- https://raw.githubusercontent.com/CypherTroopers/oneclicknode/main/node.sh)" root
  ```
