@@ -31,17 +31,17 @@ to see your node status.
 
 ## Advanced Usage (For Experienced Users)
 
-The following section is intended for experienced and technical users.
+The following section is intended for experienced users.
 
----
-
-### Edit Node Startup Flags
-
-If you want to add or modify node startup flags, edit `start-cypher.sh`:
+If you want to add startup flags when launching the node, edit `start-cypher.sh`.
+If you want to operate the node via IPC, use the commands below.
 
 ```bash
 cd go/src/github.com/cypherium/cypher
 nano start-cypher.sh
 
-
-
+cd go/src/github.com/cypherium/cypher
+./build/bin/cypher attach ipc:./chaindbname/cypher.ipc
+```
+For detailed information about available APIs and startup flags, please refer to the official Cypherium documentation:
+https://github.com/cypherium/cypher?tab=readme-ov-file
