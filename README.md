@@ -37,12 +37,12 @@ If you want to add startup flags when launching the node, edit `start-cypher.sh`
 If you want to operate the node via IPC, use the commands below.
 
 ```bash
-cd go/src/github.com/cypherium/cypher
+cd /root/go/src/github.com/cypherium/cypher
 nano start-cypher.sh
 ```
 If you want to operate the node via IPC, use the commands below.
 ```
-cd go/src/github.com/cypherium/cypher
+cd /root/go/src/github.com/cypherium/cypher
 ./build/bin/cypher attach ipc:./chaindbname/cypher.ipc
 ```
 For detailed information about available APIs and startup flags, please refer to the official Cypherium documentation:
