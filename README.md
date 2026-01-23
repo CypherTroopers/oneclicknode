@@ -47,3 +47,11 @@ cd /root/go/src/github.com/cypherium/cypher
 ```
 For detailed information about available APIs and startup flags, please refer to the official Cypherium documentation:
 https://github.com/cypherium/cypher?tab=readme-ov-file
+
+## If you want to change the LLM model, please edit line 29 in config.yaml.
+```
+cd /root/go/src/github.com/cypherium/cypher/CypherNode-chat
+nano config.yaml
+```
+I’ll explain how to set up RAG later.
+https://github.com/CypherTroopers/cypher/tree/FunOnCypherium/FunOnCypherium/LLMtools/chainchat
