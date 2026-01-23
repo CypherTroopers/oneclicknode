@@ -27,3 +27,21 @@ After that, just open your browser and go to
 to see your node status.
 ![S__50077700](https://github.com/user-attachments/assets/3da3fd0c-eedc-44c3-ad4a-55245475dfd5)
 
+---
+
+## Advanced Usage (For Experienced Users)
+
+The following section is intended for experienced and technical users.
+
+---
+
+### Edit Node Startup Flags
+
+If you want to add or modify node startup flags, edit `start-cypher.sh`:
+
+```bash
+cd go/src/github.com/cypherium/cypher
+nano start-cypher.sh
+
+
+
