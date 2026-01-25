@@ -26,7 +26,7 @@ if [ ! -d cypher-bin/.git ]; then
 fi
 
 rm -rf "$GOPATH/src/github.com/cypherium/cypher/chaindbname/cypher/chaindata"
-rsync -a cypher-bin/database/chaindb/cypher/chaindata/ cypher/chaindbname/cypher/chaindata/
+rsync -a "$GOPATH/src/github.com/cypherium/cypher-bin/database/chaindb/cypher/chaindata" "$GOPATH/src/github.com/cypherium/cypher/chaindbname/cypher/"
 cd "$GOPATH/src/github.com/cypherium/cypher"
 
 cat <<'EOT' > start-cypher.sh
