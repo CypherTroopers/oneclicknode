@@ -12,27 +12,46 @@ if [[ -z "${GOPATH}" ]]; then
   GOPATH="/root/go"
 fi
 
-cd "$GOPATH/src/github.com/cypherium/cypher"
+CY_DIR="$GOPATH/src/github.com/cypherium/cypher"
+DATADIR="$CY_DIR/chaindbname"
+DEST="$DATADIR/cypher"
+
+TAR="chaindata0-263866.tar.zst"
+SHA="${TAR}.sha256"
+BASE="https://github.com/CypherTroopers/tar/releases/download/v0-263866"
+
+cd "$CY_DIR"
 if [ ! -f ./genesis.json ]; then
   echo "ERROR: genesis.json not found in $PWD"
   exit 1
 fi
 
-./build/bin/cypher --datadir chaindbname init ./genesis.json
+./build/bin/cypher --datadir "$DATADIR" init ./genesis.json
 
-cd "$GOPATH/src/github.com/cypherium"
-if [ ! -d cypher-bin/.git ]; then
-  git clone https://github.com/cypherium/cypher-bin.git
-fi
+mkdir -p "$DEST"
+cd "$DEST"
 
-rm -rf "$GOPATH/src/github.com/cypherium/cypher/chaindbname/cypher/chaindata"
-rsync -a "$GOPATH/src/github.com/cypherium/cypher-bin/database/chaindb/cypher/chaindata" "$GOPATH/src/github.com/cypherium/cypher/chaindbname/cypher/"
-cd "$GOPATH/src/github.com/cypherium/cypher"
+rm -rf chaindata
+rm -f "$TAR" "$SHA"
 
-cat <<'EOT' > start-cypher.sh
+wget -q -O "$TAR" "${BASE}/${TAR}"
+wget -q -O "$SHA" "${BASE}/${SHA}"
+sha256sum -c "$SHA"
+
+tar -I zstd -xvf "$TAR"
+
+test -d "$DEST/chaindata/ancient" || { echo "ERROR: ancient missing"; exit 1; }
+echo "OK: installed $DEST/chaindata"
+
+cat <<'EOT' > "$CY_DIR/start-cypher.sh"
 #!/bin/bash
 set -euo pipefail
+
+CY_DIR="/root/go/src/github.com/cypherium/cypher"
+cd "$CY_DIR"
+
 EXTIP="$(curl -4 -s ifconfig.io || true)"
+
 exec ./build/bin/cypher \
   --verbosity 4 \
   --rnetport 7100 \
@@ -49,12 +68,11 @@ exec ./build/bin/cypher \
   --bootnodes enode://a1e825dcb84155d5ec651a0cf98e22ac5d4dc34733d22eb6d031216ac2988646f0f85035118ec8e2369dace00221ed3a06a6aeacda520414e71f3b56662d7055@34.106.3.238:30301 \
   console
 EOT
-chmod +x start-cypher.sh
-pm2 start ./start-cypher.sh --name cypher-node
+
+chmod +x "$CY_DIR/start-cypher.sh"
+
+pm2 start "$CY_DIR/start-cypher.sh" --name cypher-node
 pm2 save
 
-STARTUP_LINE="$(pm2 startup systemd -u root --hp /root | sed -n 's/^.*\(pm2 startup.*\)$/\1/p' | head -n 1 || true)"
-if [ -n "$STARTUP_LINE" ]; then
-  bash -lc "$STARTUP_LINE"
-fi
+pm2 startup systemd -u root --hp /root
 pm2 save
