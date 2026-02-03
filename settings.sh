@@ -14,7 +14,7 @@ apt-get install -y --no-install-recommends \
   build-essential gcc cmake m4 bzip2 texinfo pkg-config \
   libssl-dev openssl libgmp-dev libc-dev \
   python3 python3-venv python3-pip python3-dev \
-  nodejs npm pcscd
+  nodejs npm pcscd zstd
 
 # Node: switch to latest stable via "n"
 npm install -g n
