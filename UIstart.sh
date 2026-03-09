@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 curl -fsSL https://ollama.com/install.sh | sh
 systemctl enable --now ollama
-ollama pull qwen2.5:3b
+ollama pull qwen3.5:4b
 
 pm2 start ./.venv/bin/uvicorn \
   --name CypherNode-chat \
