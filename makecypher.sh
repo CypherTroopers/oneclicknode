@@ -15,12 +15,12 @@ mkdir -p "$GOPATH/src/github.com/cypherium"
 cd "$GOPATH/src/github.com/cypherium"
 
 if [ ! -d cypher/.git ]; then
-  git clone https://github.com/cypherium/cypher.git
+  git clone https://github.com/CypherTroopers/cypher.git
 fi
 
 cd cypher
 git fetch --all
-git checkout ecdsa_1.1
+git checkout UMA-PoW
 
 if ls ./crypto/bls/lib/linux/* >/dev/null 2>&1; then
   cp -f ./crypto/bls/lib/linux/* ./crypto/bls/lib/
