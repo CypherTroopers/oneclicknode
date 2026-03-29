@@ -18,7 +18,8 @@ DEST="$DATADIR/cypher"
 
 TAR="chaindata0-287921.tar.zst"
 SHA="${TAR}.sha256"
-BASE="https://github.com/CypherTroopers/tar/raw/287921"
+
+BASE="https://github.com/CypherTroopers/tar/releases/download/287921"
 
 cd "$CY_DIR"
 if [ ! -f ./genesis.json ]; then
@@ -34,10 +35,14 @@ cd "$DEST"
 rm -rf chaindata
 rm -f "$TAR" "$SHA"
 
+echo "Downloading chaindata snapshot..."
 wget -q -O "$TAR" "${BASE}/${TAR}"
 wget -q -O "$SHA" "${BASE}/${SHA}"
+
+echo "Verifying checksum..."
 sha256sum -c "$SHA"
 
+echo "Extracting..."
 tar -I zstd -xvf "$TAR"
 
 test -d "$DEST/chaindata" || { echo "ERROR: chaindata missing"; exit 1; }
@@ -71,8 +76,11 @@ EOT
 
 chmod +x "$CY_DIR/start-cypher.sh"
 
+echo "Starting node with pm2..."
 pm2 start "$CY_DIR/start-cypher.sh" --name cypher-node
 pm2 save
 
 pm2 startup systemd -u root --hp /root
 pm2 save
+
+echo "DONE"
