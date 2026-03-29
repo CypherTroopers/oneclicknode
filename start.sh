@@ -16,9 +16,9 @@ CY_DIR="$GOPATH/src/github.com/cypherium/cypher"
 DATADIR="$CY_DIR/chaindbname"
 DEST="$DATADIR/cypher"
 
-TAR="chaindata0-263866.tar.zst"
+TAR="chaindata0-287921.tar.zst"
 SHA="${TAR}.sha256"
-BASE="https://github.com/CypherTroopers/tar/releases/download/v0-263866"
+BASE="https://github.com/CypherTroopers/tar/raw/287921"
 
 cd "$CY_DIR"
 if [ ! -f ./genesis.json ]; then
@@ -40,7 +40,7 @@ sha256sum -c "$SHA"
 
 tar -I zstd -xvf "$TAR"
 
-test -d "$DEST/chaindata/ancient" || { echo "ERROR: ancient missing"; exit 1; }
+test -d "$DEST/chaindata" || { echo "ERROR: chaindata missing"; exit 1; }
 echo "OK: installed $DEST/chaindata"
 
 cat <<'EOT' > "$CY_DIR/start-cypher.sh"
