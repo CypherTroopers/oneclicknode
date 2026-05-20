@@ -11,10 +11,12 @@ fi
 
 apt-get install -y --no-install-recommends \
   ca-certificates curl wget git nano rsync ufw \
-  build-essential gcc cmake m4 bzip2 texinfo pkg-config \
+  build-essential gcc make cmake m4 bzip2 texinfo pkg-config \
   libssl-dev openssl libgmp-dev libc-dev \
-  python3.12 python3.12-venv python3.12-dev \
-  python3-pip \
+  zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm \
+  libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+  libffi-dev liblzma-dev \
+  python3 python3-venv python3-pip python3-dev \
   nodejs npm pcscd zstd
 
 # Node: switch to latest stable via "n"
