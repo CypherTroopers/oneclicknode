@@ -19,8 +19,6 @@ if [ ! -d cypher/.git ]; then
 fi
 
 cd cypher
-git fetch --all
-git checkout UMA-PoW
 
 if ls ./crypto/bls/lib/linux/* >/dev/null 2>&1; then
   cp -f ./crypto/bls/lib/linux/* ./crypto/bls/lib/
