@@ -13,7 +13,8 @@ apt-get install -y --no-install-recommends \
   ca-certificates curl wget git nano rsync ufw \
   build-essential gcc cmake m4 bzip2 texinfo pkg-config \
   libssl-dev openssl libgmp-dev libc-dev \
-  python3 python3-venv python3-pip python3-dev \
+  python3.12 python3.12-venv python3.12-dev \
+  python3-pip \
   nodejs npm pcscd zstd
 
 # Node: switch to latest stable via "n"
